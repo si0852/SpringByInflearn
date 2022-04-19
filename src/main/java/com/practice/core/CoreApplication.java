@@ -4,6 +4,9 @@ import com.practice.core.member.Grade;
 import com.practice.core.member.Member;
 import com.practice.core.member.MemberService;
 import com.practice.core.member.MemberServiceImpl;
+import com.practice.core.order.Order;
+import com.practice.core.order.OrderService;
+import com.practice.core.order.OrderServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,12 +15,19 @@ public class CoreApplication {
 
 	public static void main(String[] args) {
 		MemberService memberService = new MemberServiceImpl();
-		Member member = new Member(1L, "memberA", Grade.VIP);
+		OrderService orderService = new OrderServiceImpl();
+
+		long memberId = 1L;
+
+		Member member = new Member(memberId, "memberA", Grade.VIP);
 		memberService.join(member);
 
-		Member findMember = memberService.findMember(1L);
-		System.out.println("new member = " + member.getName());
-		System.out.println("findMember = " + findMember.getName());
+		Order order = orderService.createOrder(memberId, "itemA", 10000);
+
+		System.out.println("order = " + order);
+//		Member findMember = memberService.findMember(1L);
+//		System.out.println("new member = " + member.getName());
+//		System.out.println("findMember = " + findMember.getName());
 		SpringApplication.run(CoreApplication.class, args);
 	}
 
