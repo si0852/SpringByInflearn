@@ -2,6 +2,7 @@ package com.practice.core;
 
 import com.practice.core.discount.DiscountPolicy;
 import com.practice.core.discount.FixDiscountPolicy;
+import com.practice.core.discount.RateDiscountPolicy;
 import com.practice.core.member.MemberRepository;
 import com.practice.core.member.MemberService;
 import com.practice.core.member.MemberServiceImpl;
@@ -37,6 +38,9 @@ public class AppConfig {
 
     @Bean
     public DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+
+//        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
+
     }
 }
